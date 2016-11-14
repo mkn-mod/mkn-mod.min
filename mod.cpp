@@ -7,7 +7,7 @@
 
 class MaikenModule : public maiken::Module{
     public:
-        void compile(maiken::Application& a, const YAML::Node& node) throw (std::exception){
+        void compile(maiken::Application& a, const YAML::Node& node) throw (std::exception) override{
             KOUT(NON) << "MaikenModule SUCCESS!";
         }
 };
