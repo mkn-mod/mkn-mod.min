@@ -28,11 +28,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-
-#include <maiken.hpp>
-#define KUL_EXPORT
-#undef  _KUL_DEFS_HPP_
-#include <kul/defs.hpp>
+#include "maiken/module/init.hpp"
 
 namespace mkn { namespace mod { namespace min {
 class MaikenModule : public maiken::Module{
@@ -55,14 +51,14 @@ class MaikenModule : public maiken::Module{
 };
 }}}
 
-extern "C" 
-KUL_PUBLISH 
+extern "C"
+KUL_PUBLISH
 maiken::Module* maiken_module_construct() {
     return new mkn :: mod :: min :: MaikenModule;
 }
 
-extern "C" 
-KUL_PUBLISH  
+extern "C"
+KUL_PUBLISH
 void maiken_module_destruct(maiken::Module* p) {
     delete p;
 }
