@@ -1,23 +1,21 @@
 # min_mkn-mod
 
-**Minimal Dynimically loaded maiken module ** 
+**Minimal dynamically loaded maiken module**
 
 ## Prerequisites
-  [maiken](https://github.com/Dekken/maiken)
+  [maiken](https://github.com/mkn/mkn)
   
 
 ## Usage
-  
+
+  The `test` profile loads the module on itself, printing from its constructor, compile phase and destructor.
+
   Windows cl:
 
-    mkn clean build -tSa -EHsc -dp test
-  	mkn clean build -tSa -EHsc 
-  	mkn run -p test
+    mkn clean build -dtOa "-EHsc -std:c++20"
+    mkn clean build run -dtOp test -a "-EHsc -std:c++20"
 
+  Linux/macOS:
 
-  Linux gcc:
-
-    mkn clean build -tSa "-O2 -fPIC" -dp test -l "-pthread -ldl"
-    mkn clean build -tSa "-O2 -fPIC" -l "-pthread -ldl"
-    mkn run -p test
-    
+    mkn clean build -dtOa "-std=c++20 -fPIC"
+    mkn clean build run -dtOp test -a "-std=c++20 -fPIC"
