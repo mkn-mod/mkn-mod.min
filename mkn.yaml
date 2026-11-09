@@ -12,4 +12,6 @@ profile:
       shared: -DMKN_KUL_SHARED
 
   - name: test
-    mod: mkn-mod.min
+    mod:
+    - name: mkn-mod.min
+      local: ${MKN_ROOT}  # this checkout, not the mod repo
