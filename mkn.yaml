@@ -1,25 +1,21 @@
 
-
 name: mkn-mod.min
-version: master
-
-property:
-    maiken_location: ${MKN_HOME}/app/mkn/${version}
 
 parent: base
 src: mod.cpp
-if_arg:
-    win_shared: -DYAML_CPP_DLL
-    shared: -DKUL_SHARED
+mode: shared
 
 profile:
   - name: base
-    dep:
-      - name: mkn
-        profile: lib
-        version: ${version}
-        local: ${maiken_location}
+    dep: mkn.mod
+    if_dep:
+      bsd: parse.yaml[lib]
+      win: parse.yaml[lib]
+    if_arg:
+      shared: -DMKN_KUL_SHARED
+      win_static: -DYAML_CPP_STATIC_DEFINE
 
   - name: test
-    parent: base
-    main: test.cpp
+    mod:
+    - name: mkn-mod.min
+      local: ${MKN_ROOT}  # this checkout, not the mod repo

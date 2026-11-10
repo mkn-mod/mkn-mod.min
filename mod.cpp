@@ -1,5 +1,5 @@
 /**
-Copyright (c) 2013, Philip Deegan.
+Copyright (c) 2026, Philip Deegan.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -28,37 +28,27 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-#include "maiken/module/init.hpp"
+#include "mkn/mod/init.hpp"  // IWYU pragma: keep
 
-namespace mkn { namespace mod { namespace min {
-class MaikenModule : public maiken::Module{
-    public:
-        MaikenModule(){
-            KOUT(NON) << "MaikenModule Constructor!";
-        }
-        ~MaikenModule(){
-            KOUT(NON) << "MaikenModule Destructor!";
-        }
-        void compile(maiken::Application& a, const YAML::Node& node) throw (std::exception) override{
-            KOUT(NON) << "MaikenModule Compile!";
-        }
-        void link(maiken::Application& a, const YAML::Node& node) throw (std::exception) override{
-            KOUT(NON) << "MaikenModule Link!";
-        }
-        void pack(maiken::Application& a, const YAML::Node& node) throw (std::exception) override{
-            KOUT(NON) << "MaikenModule Pack!";
-        }
+#include "mkn/kul/log.hpp"
+
+namespace mkn::mod::min {
+
+class MaikenModule : public mkn::mod::Module {
+ public:
+  MaikenModule() { KOUT(NON) << "MaikenModule Constructor!"; }
+  ~MaikenModule() { KOUT(NON) << "MaikenModule Destructor!"; }
+  void compile(mkn::mod::Context&, YAML::Node const&) override {
+    KOUT(NON) << "MaikenModule Compile!";
+  }
+  void link(mkn::mod::Context&, YAML::Node const&) override { KOUT(NON) << "MaikenModule Link!"; }
+  void pack(mkn::mod::Context&, YAML::Node const&) override { KOUT(NON) << "MaikenModule Pack!"; }
 };
-}}}
 
-extern "C"
-KUL_PUBLISH
-maiken::Module* maiken_module_construct() {
-    return new mkn :: mod :: min :: MaikenModule;
+}  // namespace mkn::mod::min
+
+extern "C" MKN_KUL_PUBLISH mkn::mod::Module* maiken_module_construct() {
+  return new mkn::mod::min::MaikenModule;
 }
 
-extern "C"
-KUL_PUBLISH
-void maiken_module_destruct(maiken::Module* p) {
-    delete p;
-}
+extern "C" MKN_KUL_PUBLISH void maiken_module_destruct(mkn::mod::Module* p) { delete p; }
