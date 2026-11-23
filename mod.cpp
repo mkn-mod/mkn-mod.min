@@ -38,11 +38,11 @@ class MaikenModule : public mkn::mod::Module {
  public:
   MaikenModule() { KOUT(NON) << "MaikenModule Constructor!"; }
   ~MaikenModule() { KOUT(NON) << "MaikenModule Destructor!"; }
-  void compile(mkn::mod::Context&, YAML::Node const&) override {
+  void compile(mkn::mod::Context&, mkn::mod::Node const&) override {
     KOUT(NON) << "MaikenModule Compile!";
   }
-  void link(mkn::mod::Context&, YAML::Node const&) override { KOUT(NON) << "MaikenModule Link!"; }
-  void pack(mkn::mod::Context&, YAML::Node const&) override { KOUT(NON) << "MaikenModule Pack!"; }
+  void link(mkn::mod::Context&, mkn::mod::Node const&) override { KOUT(NON) << "MaikenModule Link!"; }
+  void pack(mkn::mod::Context&, mkn::mod::Node const&) override { KOUT(NON) << "MaikenModule Pack!"; }
 };
 
 }  // namespace mkn::mod::min
